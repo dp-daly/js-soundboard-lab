@@ -1,0 +1,44 @@
+body {
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: #fafafa;
+  font-family: 'Exo 2', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+
+#player div {
+  display: inline-block;
+  width: 111px;
+  height: 111px;
+  line-height: 111px;
+  color: #ea422c;
+  margin: 4px 2px;
+  text-decoration: none;
+  font-size: 1.2em;
+  font-weight: 300;
+  text-align: center;
+  position: relative;
+  border: 2px solid #222;
+}
+
+#player div:hover {
+  background-color: black;
+  color: white;
+}
+
+#randomizer {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: rgb(204, 204, 204);
+  border: 2px solid black;
+  font-family: 'Exo 2', sans-serif;
+}
+
+#randomizer:hover {
+  background-color: black;
+  color: white;
+}
