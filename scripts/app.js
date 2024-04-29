@@ -34,26 +34,26 @@ let chosenSound
 }
  
 //Define randomChoice() using identical logic to RPS game.
+//Commit 2: Added missing 'let' when declaring variables within the function.
 function randomChoice() {
     const randomIdx = Math.floor(Math.random() * audioFilesArray.length)
     randomSound = audioFilesArray[randomIdx] 
     //Storing the RandomSound's button id for later use when toggling styles
-    randomSoundId = randomSound.getAttribute("id")
-    getRandomSoundBtnId = randomSoundId.slice(0, -6)
+    let randomSoundId = randomSound.getAttribute("id")
+    let getRandomSoundBtnId = randomSoundId.slice(0, -6)
     randomSoundBtnId = document.getElementById(getRandomSoundBtnId)
  }
 
  //Call randomChoice() when the randomizer btn is clicked.
- function makeRandomMusic(event2) {
-    if (event2.target === randomizerButton) {
+ //Commit 2: Removed second event as its target doesn't need to be accessed
+ function makeRandomMusic() {
         randomChoice();
         randomSound.play()
         render();
-    }
   }
 
 //Add a CSS class to the randomBtn 
-// ! This doesn't work. I think it is related to CSS specificity and the ids/classes I added to the html earlier? 
+// ! This now works, issue confirmed to be with CSS specificity. Used '!important' as a quick fix for now but rewrite needed for more sustainable solution. 
 function render() {
     randomSoundBtnId.classList.add("showRandomChoice");
 }
@@ -62,6 +62,11 @@ function render() {
 
 //Calls makeRandomMusic() when the randomizer button is clicked.
 document.querySelector("#randomizer").addEventListener("click", makeRandomMusic);
+
+//Removes style class when the mouse leaves the button, although this is quite glitchy if the randomizer button is pressed a lot without the cursor ever leaving the button area. 
+document.querySelector("#randomizer").addEventListener("mouseleave", () => {
+    randomSoundBtnId.classList.remove("showRandomChoice");
+})
 
 //Efficiently attaches an eventListener to all 16 sound buttons.
 soundButtonsArray.forEach((button) => {
